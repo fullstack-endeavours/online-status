@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Check Online Status</title>
+         <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h3>Check Online Status Demonstration</h3>
+            <p>Switch on/off your network connection to view the demo in effect</p>
+            <strong id="status">Status: </strong>
+        </div>
+
+        <script>
+            (() => {
+                function updateOnlineStatus(){
+                    const statusEl = document.querySelector("#status");
+                    statusEl.textContent = "Status: ";
+                    statusEl.textContent += navigator.onLine ? 'Online' : 'Offline';
+                    showStatusToast();
+                }
+
+                function showStatusToast() {
+                    const statusText = navigator.onLine ? "You are online" : "You are offline";
+                    const statusClass = navigator.onLine ? "green" : "red";
+                    M.toast({ html: statusText, classes: statusClass });
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    updateOnlineStatus();
+                    window.addEventListener('online',  updateOnlineStatus);
+                    window.addEventListener('offline', updateOnlineStatus);
+                })
+            })()
+        </script>
+    </body>
+</html>

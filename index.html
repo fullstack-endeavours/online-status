@@ -1,41 +1,46 @@
 <html>
-    <head>
-        <title>Check Online Status</title>
-         <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<head>
+    <title>Check Online Status</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="./assets/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    </head>
+    <script src="./assets/materialize.min.js"></script>
+</head>
 
-    <body>
-        <div class="container">
+<body>
+    <div class="container" style="height: 100%;display: flex;flex-direction: column;justify-content: center;">
+        <div>
             <h3>Check Online Status Demonstration</h3>
-            <p>Switch on/off your network connection to view the demo in effect</p>
-            <strong id="status">Status: </strong>
+            <h5>Switch on/off your network connection to view the demo in effect</h5>
         </div>
+        <br />
+        <h4><strong id="status">Status: </strong></h4>
+    </div>
 
-        <script>
-            (() => {
-                function updateOnlineStatus(){
-                    const statusEl = document.querySelector("#status");
-                    statusEl.textContent = "Status: ";
-                    statusEl.textContent += navigator.onLine ? 'Online' : 'Offline';
-                    showStatusToast();
-                }
+    <script>
+        (() => {
+            function updateOnlineStatus() {
+                const statusEl = document.querySelector("#status");
+                statusEl.textContent = "Status: ";
+                statusEl.textContent += navigator.onLine ? 'Online' : 'Offline';
+                showStatusToast();
+            }
 
-                function showStatusToast() {
-                    const statusText = navigator.onLine ? "You are online" : "You are offline";
-                    const statusClass = navigator.onLine ? "green" : "red";
-                    M.toast({ html: statusText, classes: statusClass });
-                }
+            function showStatusToast() {
+                const statusText = navigator.onLine ? "You are online" : "You are offline";
+                const statusClass = navigator.onLine ? "green" : "red";
+                M.toast({ html: statusText, classes: statusClass });
+            }
 
-                document.addEventListener("DOMContentLoaded", function () {
-                    updateOnlineStatus();
-                    window.addEventListener('online',  updateOnlineStatus);
-                    window.addEventListener('offline', updateOnlineStatus);
-                })
-            })()
-        </script>
-    </body>
+            document.addEventListener("DOMContentLoaded", function () {
+                updateOnlineStatus();
+                window.addEventListener('online', updateOnlineStatus);
+                window.addEventListener('offline', updateOnlineStatus);
+            })
+        })()
+    </script>
+</body>
+
 </html>
